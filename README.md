@@ -2,7 +2,7 @@
 
 Just a Discord bot who daily posts a random GIF of Henry Cavill.
 
-##COMMANDS
+## How it works
 
 **Daily Post**
 
