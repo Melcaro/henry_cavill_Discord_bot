@@ -4,6 +4,11 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
+    "axios": "^0.21.0",
+    "cron": "^1.8.2",
     "discord.js": "^12.4.0"
+  },
+  "scripts": {
+    "start:dev": "nodemon main.js"
   }
 }
