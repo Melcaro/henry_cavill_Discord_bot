@@ -6,9 +6,9 @@ require('dotenv').config();
 
 
 client.on("ready", ()=>{
-    console.log('I\'m ready!');
 });
 
+const henryRegex = RegExp('henry|cavill','gmi');
 const dailyHenryMessage = new CronJob('0 10 * * *', async () => { //Daily message à 10:00 AM
         const newGifUrl = await Srv.fetchGif();
         const gifEmbed = {
@@ -27,19 +27,16 @@ const dailyHenryMessage = new CronJob('0 10 * * *', async () => { //Daily messag
 });
 
 client.on('message', async message => {
-    const henryRegex = RegExp('henry|cavill','gmi');
-    const someoneIsSpeakingOfHenry = henryRegex.test(message.content);
     if (message.content === '!HenryGif') {
         const newGifUrl = await Srv.fetchGif();
         const attachedGif = new MessageAttachment(newGifUrl)
         message.channel.send(`Hi ${message.author.username} ! Here's a GIF just for you 😉`,attachedGif)
-    } else if (someoneIsSpeakingOfHenry) {
+    } else if (henryRegex.test(message.content)) {
         message.react('😘');
         const newGifUrl = await Srv.fetchGif();
         const attachedGif = new MessageAttachment(newGifUrl);
         message.channel.send(`Speaking of me ${message.author.username} ? Here\'s another one just for you. Love on you 🥰`,attachedGif);
     }
 })
-
 client.login(process.env.BOT_TOKEN);
 dailyHenryMessage.start();
